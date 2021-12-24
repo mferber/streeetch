@@ -2,13 +2,29 @@ import Foundation
 import AVFoundation
 
 class SoundPlayer {
+  enum Sound {
+    case countdown
+    case start
+    case stop
+
+    var url: URL {
+      switch self {
+        case .countdown: return Bundle.main.url(forResource: "countdown", withExtension: "wav")!
+        case .start: return Bundle.main.url(forResource: "startstop", withExtension: "wav")!
+        case .stop: return Bundle.main.url(forResource: "startstop", withExtension: "wav")!
+      }
+    }
+  }
+
+
+
   let audioSession = AVAudioSession.sharedInstance()
   let countdownSoundURL = Bundle.main.url(forResource: "countdown", withExtension: "wav")!
   let startSoundURL = Bundle.main.url(forResource: "startstop", withExtension: "wav")!
   let stopSoundURL = Bundle.main.url(forResource: "startstop", withExtension: "wav")!
 
   var player: AVAudioPlayer!
-  let delegate: AVAudioPlayerDelegate!
+  var playerDelegate: AVAudioPlayerDelegate?
 
   init() {
     do {
@@ -18,18 +34,35 @@ class SoundPlayer {
     } catch {
       print("Audio session initialization failed: \(error.localizedDescription)")
     }
-    delegate = SoundPlayerDelegate(session: audioSession)
   }
 
-  func playCountdownSound() { play(url: countdownSoundURL) }
-  func playStartSound() { play(url: startSoundURL) }
-  func playStopSound() { play(url: startSoundURL) }
-
-  private func play(url: URL) {
+  func activateAudioSession() {
     do {
-      player = try AVAudioPlayer(contentsOf: url)
-      player.delegate = delegate
       try audioSession.setActive(true)
+    } catch {
+      print("Activating audio session failed: \(error.localizedDescription)")
+    }
+  }
+
+  func deactivateAudioSession() {
+    do {
+      try audioSession.setActive(false)
+    } catch {
+      print("Deactivating audio session failed: \(error.localizedDescription)")
+    }
+  }
+
+  func play(_ sound: Sound, then action: (() -> Void)? = nil) {
+    do {
+      player = try AVAudioPlayer(contentsOf: sound.url)
+      playerDelegate = SoundPlayerDelegate { [weak self] in
+        self?.player = nil
+        if let action = action {
+          action()
+        }
+      }
+      player.delegate = playerDelegate
+
       player.play()
     } catch {
       print("Sound player failed: \(error.localizedDescription)")
@@ -38,17 +71,13 @@ class SoundPlayer {
 }
 
 class SoundPlayerDelegate: NSObject, AVAudioPlayerDelegate {
-  let audioSession: AVAudioSession
+  let action: () -> Void
 
-  init(session: AVAudioSession) {
-    self.audioSession = session
+  init(action: @escaping () -> Void) {
+    self.action = action
   }
 
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    do {
-      try audioSession.setActive(false)
-    } catch {
-      print("Audio session deactivation failed: \(error.localizedDescription)")
-    }
+    action()
   }
 }

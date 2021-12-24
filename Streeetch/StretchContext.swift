@@ -39,6 +39,12 @@ class StretchContext: ObservableObject {
   private func startCountdown() {
     timer?.invalidate()
     timerExpires = Date().addingTimeInterval(TimeInterval(secondsToCountDown))
+    clock = secondsToCountDown
+    status = .getReady
+
+    soundPlayer.activateAudioSession()
+    soundPlayer.play(.countdown)
+
     timer = .scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
       guard let self = self else { return }
       if let timerExpires = self.timerExpires {
@@ -48,20 +54,25 @@ class StretchContext: ObservableObject {
         } else {
           let newClock = Int(ceil(remaining))
           if self.clock != newClock {
-            self.soundPlayer.playCountdownSound()
+            self.soundPlayer.play(.countdown)
             self.clock = newClock
           }
         }
       }
     }
-    clock = secondsToCountDown
-    status = .getReady
-    soundPlayer.playCountdownSound()
   }
 
   private func startRep() {
     timer?.invalidate()
     timerExpires = Date().addingTimeInterval(TimeInterval(secondsPerRep))
+    clock = secondsPerRep
+    status = .rep
+
+    soundPlayer.activateAudioSession()
+    soundPlayer.play(.start, then: { [weak soundPlayer] in
+      soundPlayer?.deactivateAudioSession()
+    })
+
     timer = .scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
       guard let self = self else { return }
       if let timerExpires = self.timerExpires {
@@ -73,13 +84,13 @@ class StretchContext: ObservableObject {
         }
       }
     }
-    clock = secondsPerRep
-    status = .rep
-    soundPlayer.playStartSound()
   }
 
   func finishRep() {
-    soundPlayer.playStopSound()
+    soundPlayer.play(.stop, then: { [weak soundPlayer] in
+      soundPlayer?.deactivateAudioSession()
+    })
+
     if side == .left {
       side = .right
       startCountdown()
