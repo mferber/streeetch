@@ -9,7 +9,7 @@ import SwiftUI
 
 let numberOfReps = 15
 let secondsPerRep = 15
-let secondsToCountDown = 3
+let secondsToCountDown = 5
 
 @main
 struct StreeetchApp: App {

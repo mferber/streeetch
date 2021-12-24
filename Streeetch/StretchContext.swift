@@ -32,7 +32,6 @@ class StretchContext: ObservableObject {
   func start() {
     side = .left
     rep = 1
-    clock = 15
     startCountdown()
   }
 
