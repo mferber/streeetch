@@ -8,18 +8,6 @@
 import SwiftUI
 
 struct StretchView: View {
-
-  enum Side: CustomStringConvertible {
-    case left
-    case right
-    var description: String {
-      switch self {
-        case .left: return "Left"
-        case .right: return "Right"
-      }
-    }
-  }
-
   @ObservedObject var context: StretchContext
 
   var body: some View {
@@ -87,7 +75,7 @@ struct StretchView: View {
     return Text(text)
   }
 
-  func sideText(_ thisSide: Side, active: Bool) -> some View {
+  func sideText(_ thisSide: StretchContext.Side, active: Bool) -> some View {
     let text = Text(String(describing: thisSide))
     if (active) {
       return text.fontWeight(.black)
