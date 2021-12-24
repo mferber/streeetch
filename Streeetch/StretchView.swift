@@ -9,9 +9,10 @@ import SwiftUI
 
 struct StretchView: View {
   @ObservedObject var context: StretchContext
+  let lightGray = Color.init(white: 0.8)
 
   var body: some View {
-    VStack(spacing: 20) {
+    VStack {
       mainButton()
       HStack {
         sideText(.left, active: .left == context.side)
@@ -53,11 +54,11 @@ struct StretchView: View {
   func clockDisplay() -> some View {
     var text: String
     switch context.status {
-      case .unstarted: text = "—"
+      case .unstarted: text = "⋯"
       case .getReady, .rep: text = String(context.clock)
       default: text = ""
     }
-    let color: Color = context.status == .rep ? .black : Color(white: 0.8)
+    let color: Color = context.status == .rep ? .black : lightGray
     return Text(text)
       .font(.custom("HelveticaNeue", size: 108, relativeTo: .largeTitle))
       .fontWeight(.thin)
@@ -76,11 +77,11 @@ struct StretchView: View {
   }
 
   func sideText(_ thisSide: StretchContext.Side, active: Bool) -> some View {
-    let text = Text(String(describing: thisSide))
+    let text = Text(String(describing: thisSide)).font(.largeTitle)
     if (active) {
       return text.fontWeight(.black)
     } else {
-      return text.foregroundColor(.gray)
+      return text.foregroundColor(lightGray)
     }
   }
 
