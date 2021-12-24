@@ -7,9 +7,15 @@
 
 import SwiftUI
 
+#if SHORTER
+let numberOfReps = 3
+let secondsPerRep = 5
+let secondsToCountDown = 3
+#else
 let numberOfReps = 15
 let secondsPerRep = 15
-let secondsToCountDown = 5
+let secondsToCountDown = 8
+#endif
 
 @main
 struct StreeetchApp: App {
