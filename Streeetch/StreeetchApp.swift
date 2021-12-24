@@ -13,11 +13,13 @@ let secondsToCountDown = 3
 
 @main
 struct StreeetchApp: App {
-    var body: some Scene {
-        WindowGroup {
-          StretchView(context: StretchContext())
-        }
+  let context = StretchContext()
+
+  var body: some Scene {
+    WindowGroup {
+      StretchView(context: context)
     }
+  }
 }
 
 enum Status {
@@ -45,6 +47,7 @@ class StretchContext: ObservableObject {
   @Published var clock = secondsPerRep
   @Published var paused = false
 
+  private let soundPlayer = SoundPlayer()
   private var timer: Timer?
   private var timerExpires: Date?
 
@@ -65,12 +68,17 @@ class StretchContext: ObservableObject {
         if remaining <= 0 {
           self.startRep()
         } else {
-          self.clock = Int(ceil(remaining))
+          let newClock = Int(ceil(remaining))
+          if self.clock != newClock {
+            self.soundPlayer.playCountdownSound()
+            self.clock = newClock
+          }
         }
       }
     }
     clock = secondsToCountDown
     status = .getReady
+    soundPlayer.playCountdownSound()
   }
 
   private func startRep() {
@@ -89,9 +97,11 @@ class StretchContext: ObservableObject {
     }
     clock = secondsPerRep
     status = .rep
+    soundPlayer.playStartSound()
   }
 
   func finishRep() {
+    soundPlayer.playStopSound()
     if side == .left {
       side = .right
       startCountdown()

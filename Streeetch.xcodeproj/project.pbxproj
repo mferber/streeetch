@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3943BC6727764B6D006468C2 /* countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3943BC6527764B6D006468C2 /* countdown.wav */; };
 		3943BC6827764B6D006468C2 /* startstop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3943BC6627764B6D006468C2 /* startstop.wav */; };
+		3943BC6A27764C83006468C2 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943BC6927764C83006468C2 /* SoundPlayer.swift */; };
 		39EE76352774F131003E42A3 /* StreeetchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EE76342774F131003E42A3 /* StreeetchApp.swift */; };
 		39EE76372774F131003E42A3 /* StretchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EE76362774F131003E42A3 /* StretchView.swift */; };
 		39EE76392774F135003E42A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39EE76382774F135003E42A3 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		3943BC6527764B6D006468C2 /* countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdown.wav; sourceTree = "<group>"; };
 		3943BC6627764B6D006468C2 /* startstop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = startstop.wav; sourceTree = "<group>"; };
+		3943BC6927764C83006468C2 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		39EE76312774F131003E42A3 /* Stre-e-etch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stre-e-etch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EE76342774F131003E42A3 /* StreeetchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreeetchApp.swift; sourceTree = "<group>"; };
 		39EE76362774F131003E42A3 /* StretchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				39EE76342774F131003E42A3 /* StreeetchApp.swift */,
 				39EE76362774F131003E42A3 /* StretchView.swift */,
+				3943BC6927764C83006468C2 /* SoundPlayer.swift */,
 				39EE76382774F135003E42A3 /* Assets.xcassets */,
 				3943BC6427764B6D006468C2 /* Resources */,
 				39EE763A2774F135003E42A3 /* Preview Content */,
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39EE76372774F131003E42A3 /* StretchView.swift in Sources */,
+				3943BC6A27764C83006468C2 /* SoundPlayer.swift in Sources */,
 				39EE76352774F131003E42A3 /* StreeetchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
