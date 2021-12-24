@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		39EE76312774F131003E42A3 /* Streeetch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streeetch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39EE76312774F131003E42A3 /* Stre-e-etch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stre-e-etch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EE76342774F131003E42A3 /* StreeetchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreeetchApp.swift; sourceTree = "<group>"; };
 		39EE76362774F131003E42A3 /* StretchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchView.swift; sourceTree = "<group>"; };
 		39EE76382774F135003E42A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		39EE76322774F131003E42A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39EE76312774F131003E42A3 /* Streeetch.app */,
+				39EE76312774F131003E42A3 /* Stre-e-etch.app */,
 				39EE76412774F135003E42A3 /* StreeetchTests.xctest */,
 				39EE764B2774F135003E42A3 /* StreeetchUITests.xctest */,
 			);
@@ -144,7 +144,7 @@
 			);
 			name = Streeetch;
 			productName = Streeetch;
-			productReference = 39EE76312774F131003E42A3 /* Streeetch.app */;
+			productReference = 39EE76312774F131003E42A3 /* Stre-e-etch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		39EE76402774F135003E42A3 /* StreeetchTests */ = {
@@ -434,7 +434,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.robotpie.Streeetch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Stre-e-etch";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,7 +464,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.robotpie.Streeetch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Stre-e-etch";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
