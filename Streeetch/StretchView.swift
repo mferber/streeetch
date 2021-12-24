@@ -70,7 +70,10 @@ struct StretchView: View {
       default: text = ""
     }
     let color: Color = context.status == .rep ? .black : Color(white: 0.8)
-    return Text(text).font(.largeTitle).fontWeight(.black).foregroundColor(color)
+    return Text(text)
+      .font(.custom("HelveticaNeue", size: 108, relativeTo: .largeTitle))
+      .fontWeight(.thin)
+      .foregroundColor(color)
   }
 
   func statusText() -> some View {
